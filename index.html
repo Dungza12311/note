@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
 
 <meta charset="UTF-8">
@@ -7,7 +8,7 @@
 
 <title>VISNAM SUPPORT SYSTEM</title>
 
-<!-- Tailwind -->
+<!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
 
 <!-- Font Awesome -->
@@ -20,53 +21,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 <style>
 
 body{
-    font-family: Arial, sans-serif;
     background:#020617;
     color:white;
+    font-family:Arial, sans-serif;
+    overflow-x:hidden;
 }
 
-/* Scroll */
-
-::-webkit-scrollbar{
-    width:6px;
-    height:6px;
-}
-
-::-webkit-scrollbar-thumb{
-    background:#334155;
-    border-radius:20px;
-}
-
-/* Card */
-
-.card{
-    background:rgba(15,23,42,.8);
-    border:1px solid rgba(255,255,255,.05);
-    backdrop-filter:blur(10px);
-}
-
-/* Glow */
-
-.glow{
-    box-shadow:0 0 25px rgba(14,165,233,.2);
-}
-
-/* Hover table */
-
-tbody tr:hover{
-    background:rgba(30,41,59,.7);
-}
-
-/* Snow */
+/* TUYẾT */
 
 .snowflake{
     position:fixed;
     top:-10vh;
     color:white;
-    opacity:.4;
+    opacity:.35;
     pointer-events:none;
-    z-index:1;
     animation:fall linear infinite;
+    z-index:1;
 }
 
 @keyframes fall{
@@ -81,54 +51,118 @@ tbody tr:hover{
 
 }
 
+/* CARD */
+
+.card{
+    background:rgba(15,23,42,.85);
+    border:1px solid rgba(255,255,255,.05);
+    backdrop-filter:blur(12px);
+}
+
+/* INPUT */
+
+.input{
+    width:100%;
+    background:#020617;
+    border:1px solid #334155;
+    border-radius:18px;
+    padding:14px;
+    color:white;
+    outline:none;
+}
+
+.input:focus{
+    border-color:#0ea5e9;
+    box-shadow:0 0 0 3px rgba(14,165,233,.15);
+}
+
+/* TABLE */
+
+tbody tr:hover{
+    background:rgba(30,41,59,.5);
+}
+
+::-webkit-scrollbar{
+    width:6px;
+    height:6px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#334155;
+    border-radius:20px;
+}
+
 </style>
 
 </head>
 
-<body class="min-h-screen overflow-x-hidden">
+<body>
 
 <!-- TUYẾT -->
 
-<div id="snow"></div>
+<script>
+
+for(let i=0;i<80;i++){
+
+    let snow=document.createElement("div");
+
+    snow.className="snowflake";
+
+    snow.innerHTML="❄";
+
+    snow.style.left=Math.random()*100+"vw";
+
+    snow.style.fontSize=(Math.random()*12+8)+"px";
+
+    snow.style.animationDuration=
+    (Math.random()*10+10)+"s";
+
+    snow.style.opacity=Math.random();
+
+    document.body.appendChild(snow);
+
+}
+
+</script>
 
 <!-- HEADER -->
 
-<header class="h-16 border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+<header class="h-16 bg-slate-950 border-b border-slate-800 sticky top-0 z-50">
 
-    <div class="max-w-7xl mx-auto px-5 h-full flex items-center justify-between">
+<div class="max-w-7xl mx-auto px-5 h-full flex items-center justify-between">
 
-        <div class="flex items-center gap-4">
+<div class="flex items-center gap-4">
 
-            <div class="w-11 h-11 rounded-2xl bg-sky-500/20 flex items-center justify-center glow">
+<div class="w-11 h-11 rounded-2xl bg-sky-500/20 flex items-center justify-center">
 
-                <i class="fas fa-building text-sky-400 text-xl"></i>
+<i class="fas fa-building text-sky-400 text-xl"></i>
 
-            </div>
+</div>
 
-            <div>
+<div>
 
-                <h1 class="font-bold text-lg tracking-wider">
-                    VISNAM SUPPORT SYSTEM
-                </h1>
+<h1 class="font-bold text-lg tracking-wider">
+VISNAM SUPPORT SYSTEM
+</h1>
 
-                <p class="text-[11px] text-slate-400">
-                    Hệ thống hỗ trợ khách hàng
-                </p>
+<p class="text-xs text-slate-400">
+Hệ thống hỗ trợ khách hàng
+</p>
 
-            </div>
+</div>
 
-        </div>
+</div>
 
-        <button
-        onclick="exportExcel()"
-        class="bg-emerald-500 hover:bg-emerald-600 px-5 py-2 rounded-xl font-bold text-sm">
+<button
+onclick="exportExcel()"
+class="bg-emerald-500 hover:bg-emerald-600 px-5 py-2 rounded-xl font-bold">
 
-            <i class="fas fa-file-excel mr-2"></i>
-            Xuất Excel
+<i class="fas fa-file-excel mr-2"></i>
+Xuất Excel
 
-        </button>
+</button>
 
-    </div>
+</div>
 
 </header>
 
@@ -136,298 +170,277 @@ tbody tr:hover{
 
 <main class="max-w-7xl mx-auto p-5 relative z-10">
 
-    <!-- THỐNG KÊ -->
+<!-- THỐNG KÊ -->
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
 
-        <div class="card rounded-3xl p-5">
+<div class="card rounded-3xl p-5">
 
-            <p class="text-slate-400 text-sm">
-                Tổng hỗ trợ hôm nay
-            </p>
+<p class="text-slate-400 text-sm">
+Tổng hỗ trợ
+</p>
 
-            <h2
-            id="tongHomNay"
-            class="text-3xl font-bold text-sky-400 mt-2">
-                0
-            </h2>
+<h2 id="tongHoTro"
+class="text-3xl font-bold text-sky-400 mt-2">
+0
+</h2>
 
-        </div>
+</div>
 
-        <div class="card rounded-3xl p-5">
+<div class="card rounded-3xl p-5">
 
-            <p class="text-slate-400 text-sm">
-                Hóa đơn
-            </p>
+<p class="text-slate-400 text-sm">
+Hóa đơn
+</p>
 
-            <h2
-            id="tongHD"
-            class="text-3xl font-bold text-pink-400 mt-2">
-                0
-            </h2>
+<h2 id="tongHD"
+class="text-3xl font-bold text-pink-400 mt-2">
+0
+</h2>
 
-        </div>
+</div>
 
-        <div class="card rounded-3xl p-5">
+<div class="card rounded-3xl p-5">
 
-            <p class="text-slate-400 text-sm">
-                Chữ ký số
-            </p>
+<p class="text-slate-400 text-sm">
+Chữ ký số
+</p>
 
-            <h2
-            id="tongCKS"
-            class="text-3xl font-bold text-yellow-400 mt-2">
-                0
-            </h2>
+<h2 id="tongCKS"
+class="text-3xl font-bold text-yellow-400 mt-2">
+0
+</h2>
 
-        </div>
+</div>
 
-        <div class="card rounded-3xl p-5">
+<div class="card rounded-3xl p-5">
 
-            <p class="text-slate-400 text-sm">
-                BHXH
-            </p>
+<p class="text-slate-400 text-sm">
+BHXH
+</p>
 
-            <h2
-            id="tongBHXH"
-            class="text-3xl font-bold text-emerald-400 mt-2">
-                0
-            </h2>
+<h2 id="tongBHXH"
+class="text-3xl font-bold text-emerald-400 mt-2">
+0
+</h2>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
-    <!-- FORM -->
+<!-- FORM -->
 
-    <div class="card rounded-3xl p-6 mb-6 glow">
+<div class="card rounded-3xl p-6 mb-6">
 
-        <div class="flex items-center justify-between mb-6">
+<div class="flex justify-between items-center mb-5">
 
-            <h2 class="text-2xl font-bold">
-                Nhập thông tin hỗ trợ
-            </h2>
+<h2 class="text-2xl font-bold">
+Nhập thông tin hỗ trợ
+</h2>
 
-            <div
-            id="msg"
-            class="text-emerald-400 font-bold text-sm">
-            </div>
+<div id="msg"
+class="text-emerald-400 font-bold"></div>
 
-        </div>
+</div>
 
-        <!-- ROW -->
+<!-- MST -->
 
-        <div class="grid md:grid-cols-2 gap-5">
+<div class="grid md:grid-cols-2 gap-5">
 
-            <!-- MST -->
+<div>
 
-            <div>
+<label class="text-sm text-slate-400 block mb-2">
+Mã số thuế
+</label>
 
-                <label class="text-sm text-slate-300 block mb-2">
-                    Mã số thuế
-                </label>
+<div class="flex gap-2">
 
-                <div class="flex gap-2">
+<input
+type="text"
+id="mst"
+placeholder="Nhập MST..."
+class="input">
 
-                    <input
-                    type="text"
-                    id="mst"
-                    placeholder="Nhập mã số thuế..."
-                    class="flex-1 bg-slate-950 border border-slate-700 rounded-2xl px-4 py-3 text-white">
+<button
+onclick="traCuuMST()"
+class="bg-sky-500 hover:bg-sky-600 px-5 rounded-2xl font-bold">
 
-                    <button
-                    onclick="traCuuMST()"
-                    class="bg-sky-500 hover:bg-sky-600 px-5 rounded-2xl font-bold">
+<i class="fas fa-search"></i>
 
-                        <i class="fas fa-search"></i>
+</button>
 
-                    </button>
+</div>
 
-                </div>
+</div>
 
-            </div>
+<div>
 
-            <!-- SDT -->
+<label class="text-sm text-slate-400 block mb-2">
+Số điện thoại
+</label>
 
-            <div>
+<input
+type="text"
+id="sdt"
+placeholder="Nhập số điện thoại..."
+class="input">
 
-                <label class="text-sm text-slate-300 block mb-2">
-                    Số điện thoại
-                </label>
+</div>
 
-                <input
-                type="text"
-                id="sdt"
-                placeholder="Nhập số điện thoại..."
-                class="w-full bg-slate-950 border border-slate-700 rounded-2xl px-4 py-3 text-white">
+</div>
 
-            </div>
+<!-- TÊN CÔNG TY -->
 
-        </div>
+<div class="mt-5">
 
-        <!-- TÊN CTY -->
+<label class="text-sm text-slate-400 block mb-2">
+Tên doanh nghiệp
+</label>
 
-        <div class="mt-5">
+<input
+type="text"
+id="tencty"
+placeholder="Tên doanh nghiệp..."
+class="input">
 
-            <label class="text-sm text-slate-300 block mb-2">
-                Tên doanh nghiệp
-            </label>
+</div>
 
-            <input
-            type="text"
-            id="tencty"
-            placeholder="Tên doanh nghiệp..."
-            class="w-full bg-slate-950 border border-slate-700 rounded-2xl px-4 py-3 text-white">
+<!-- THÔNG TIN -->
 
-        </div>
+<div id="thongtin" class="mt-5"></div>
 
-        <!-- LOẠI -->
+<!-- LOẠI -->
 
-        <div class="grid md:grid-cols-2 gap-5 mt-5">
+<div class="grid md:grid-cols-2 gap-5 mt-5">
 
-            <div>
+<div>
 
-                <label class="text-sm text-slate-300 block mb-2">
-                    Loại hỗ trợ
-                </label>
+<label class="text-sm text-slate-400 block mb-2">
+Loại hỗ trợ
+</label>
 
-                <select
-                id="loai"
-                class="w-full bg-slate-950 border border-slate-700 rounded-2xl px-4 py-3 text-white">
+<select id="loai" class="input">
 
-                    <option>HĐ</option>
-                    <option>CKS</option>
-                    <option>BHXH</option>
+<option>HĐ</option>
+<option>CKS</option>
+<option>BHXH</option>
 
-                </select>
+</select>
 
-            </div>
+</div>
 
-            <div>
+<div>
 
-                <label class="text-sm text-slate-300 block mb-2">
-                    Vấn đề hỗ trợ
-                </label>
+<label class="text-sm text-slate-400 block mb-2">
+Vấn đề hỗ trợ
+</label>
 
-                <input
-                type="text"
-                id="vanDe"
-                placeholder="Nhập vấn đề hỗ trợ..."
-                class="w-full bg-slate-950 border border-slate-700 rounded-2xl px-4 py-3 text-white">
+<input
+type="text"
+id="vanDe"
+placeholder="Nhập vấn đề..."
+class="input">
 
-            </div>
+</div>
 
-        </div>
+</div>
 
-        <!-- BUTTON -->
+<!-- BUTTON -->
 
-        <button
-        onclick="luuThongTin()"
-        class="w-full mt-6 bg-gradient-to-r from-sky-500 to-blue-600 hover:opacity-90 py-4 rounded-2xl text-lg font-bold glow">
+<button
+onclick="luuThongTin()"
+class="w-full mt-6 bg-gradient-to-r from-sky-500 to-blue-600 py-4 rounded-2xl font-bold text-lg hover:opacity-90">
 
-            <i class="fas fa-save mr-2"></i>
-            LƯU THÔNG TIN
+<i class="fas fa-save mr-2"></i>
+LƯU THÔNG TIN
 
-        </button>
+</button>
 
-    </div>
+</div>
 
-    <!-- TABLE -->
+<!-- TABLE -->
 
-    <div class="card rounded-3xl overflow-hidden">
+<div class="card rounded-3xl overflow-hidden">
 
-        <!-- TOP -->
+<div class="p-5 border-b border-slate-800 flex flex-col md:flex-row gap-3 justify-between">
 
-        <div class="p-5 border-b border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-3">
+<h2 class="text-xl font-bold">
+Dữ liệu khách hàng
+</h2>
 
-            <h2 class="text-xl font-bold">
-                Bảng dữ liệu hỗ trợ
-            </h2>
+<input
+type="text"
+id="search"
+onkeyup="timKiem()"
+placeholder="Tìm MST hoặc công ty..."
+class="input md:w-[320px]">
 
-            <input
-            type="text"
-            id="search"
-            onkeyup="timKiem()"
-            placeholder="Tìm MST hoặc tên công ty..."
-            class="bg-slate-950 border border-slate-700 rounded-2xl px-4 py-3 text-white w-full md:w-[320px]">
+</div>
 
-        </div>
+<div class="overflow-auto max-h-[650px]">
 
-        <!-- TABLE -->
+<table class="w-full text-sm">
 
-        <div class="overflow-auto max-h-[650px]">
+<thead class="bg-slate-950 sticky top-0">
 
-            <table class="w-full text-sm">
+<tr>
 
-                <thead class="bg-slate-950 sticky top-0 z-20">
+<th class="p-4 text-left text-sky-400">STT</th>
+<th class="p-4 text-left text-sky-400">Ngày</th>
+<th class="p-4 text-left text-sky-400">MST</th>
+<th class="p-4 text-left text-sky-400">SĐT</th>
+<th class="p-4 text-left text-sky-400">Tên DN</th>
+<th class="p-4 text-left text-sky-400">Loại</th>
+<th class="p-4 text-left text-sky-400">Tên hỗ trợ</th>
+<th class="p-4 text-left text-sky-400">Vấn đề</th>
+<th class="p-4 text-left text-red-400">Xóa</th>
 
-                    <tr>
+</tr>
 
-                        <th class="p-4 text-left text-sky-400">STT</th>
-                        <th class="p-4 text-left text-sky-400">Ngày</th>
-                        <th class="p-4 text-left text-sky-400">MST</th>
-                        <th class="p-4 text-left text-sky-400">SĐT</th>
-                        <th class="p-4 text-left text-sky-400">Tên doanh nghiệp</th>
-                        <th class="p-4 text-left text-sky-400">Loại</th>
-                        <th class="p-4 text-left text-sky-400">Tên hỗ trợ</th>
-                        <th class="p-4 text-left text-sky-400">Vấn đề</th>
+</thead>
 
-                    </tr>
+<tbody id="tableData"></tbody>
 
-                </thead>
+</table>
 
-                <tbody id="tableData">
+</div>
 
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
+</div>
 
 </main>
 
 <script>
 
-/* ======================= */
-/* TUYẾT */
-/* ======================= */
-
-for(let i=0;i<70;i++){
-
-    let snow = document.createElement("div");
-
-    snow.className = "snowflake";
-
-    snow.innerHTML = "❄";
-
-    snow.style.left = Math.random()*100+"vw";
-
-    snow.style.fontSize = (Math.random()*12+8)+"px";
-
-    snow.style.animationDuration =
-    (Math.random()*10+10)+"s";
-
-    snow.style.opacity = Math.random();
-
-    document.body.appendChild(snow);
-}
-
-/* ======================= */
 /* DATA */
-/* ======================= */
 
 let dsHoTro =
 JSON.parse(localStorage.getItem("dsHoTro")) || [];
 
-renderTable();
+/* LOAD */
 
-capNhatThongKe();
+window.onload=function(){
 
-/* ======================= */
+    renderTable();
+
+    capNhatThongKe();
+
+}
+
+/* THÔNG BÁO */
+
+function thongBao(text){
+
+    document.getElementById("msg").innerText=text;
+
+    setTimeout(()=>{
+
+        document.getElementById("msg").innerText="";
+
+    },2000);
+
+}
+
 /* TRA CỨU MST */
-/* ======================= */
 
 async function traCuuMST(){
 
@@ -436,7 +449,7 @@ async function traCuuMST(){
 
     if(!mst){
 
-        alert("Vui lòng nhập MST");
+        alert("Nhập mã số thuế");
 
         return;
     }
@@ -450,10 +463,97 @@ async function traCuuMST(){
 
         let data = await res.json();
 
-        if(data.code == "00"){
+        if(data.code=="00"){
+
+            let info=data.data;
 
             document.getElementById("tencty").value =
-            data.data.name;
+            info.name || "";
+
+            let trangThai =
+            info.status || "Đang hoạt động";
+
+            let mauTrangThai =
+            trangThai.toLowerCase().includes("đang")
+            ? "text-emerald-400"
+            : "text-red-400";
+
+            document.getElementById("thongtin").innerHTML=`
+
+            <div class="
+            p-5
+            rounded-3xl
+            bg-slate-950
+            border
+            border-slate-700">
+
+            <div class="grid md:grid-cols-2 gap-4 text-sm">
+
+            <div>
+
+            <span class="text-slate-400">
+            MST:
+            </span>
+
+            <span class="text-sky-400 font-bold">
+            ${mst}
+            </span>
+
+            </div>
+
+            <div>
+
+            <span class="text-slate-400">
+            Trạng thái:
+            </span>
+
+            <span class="${mauTrangThai} font-bold">
+            ${trangThai}
+            </span>
+
+            </div>
+
+            <div>
+
+            <span class="text-slate-400">
+            Chủ sở hữu:
+            </span>
+
+            <span>
+            ${info.owner || "---"}
+            </span>
+
+            </div>
+
+            <div>
+
+            <span class="text-slate-400">
+            Địa chỉ:
+            </span>
+
+            <span>
+            ${info.address || "---"}
+            </span>
+
+            </div>
+
+            <div>
+
+            <span class="text-slate-400">
+            Tên công ty:
+            </span>
+
+            <span class="text-emerald-400 font-bold">
+            ${info.name || "---"}
+            </span>
+
+            </div>
+
+            </div>
+
+            </div>
+
+            `;
 
             thongBao("Tra cứu thành công");
 
@@ -471,30 +571,28 @@ async function traCuuMST(){
 
 }
 
-/* ======================= */
 /* LƯU */
-/* ======================= */
 
 function luuThongTin(){
 
     let mst =
-    document.getElementById("mst").value;
+    document.getElementById("mst").value.trim();
 
     let sdt =
-    document.getElementById("sdt").value;
+    document.getElementById("sdt").value.trim();
 
     let tencty =
-    document.getElementById("tencty").value;
+    document.getElementById("tencty").value.trim();
 
     let loai =
     document.getElementById("loai").value;
 
     let vanDe =
-    document.getElementById("vanDe").value;
+    document.getElementById("vanDe").value.trim();
 
-    if(!mst || !tencty){
+    if(mst=="" || tencty==""){
 
-        alert("Thiếu dữ liệu");
+        alert("Nhập MST trước");
 
         return;
     }
@@ -506,19 +604,25 @@ function luuThongTin(){
     + "/"
     + (now.getMonth()+1).toString().padStart(2,'0')
     + "/"
-    + now.getFullYear();
+    + now.getFullYear()
+    + " "
+    + now.getHours().toString().padStart(2,'0')
+    + ":"
+    + now.getMinutes().toString().padStart(2,'0');
 
-    dsHoTro.unshift({
+    let duLieuMoi={
 
-        ngay,
-        mst,
-        sdt,
-        tencty,
-        loai,
+        ngay:ngay,
+        mst:mst,
+        sdt:sdt,
+        tencty:tencty,
+        loai:loai,
         nguoiHoTro:"Dũng",
-        vanDe
+        vanDe:vanDe
 
-    });
+    };
+
+    dsHoTro.unshift(duLieuMoi);
 
     localStorage.setItem(
     "dsHoTro",
@@ -529,59 +633,78 @@ function luuThongTin(){
 
     capNhatThongKe();
 
-    thongBao("Đã lưu dữ liệu");
+    thongBao("Đã lưu thành công");
 
     document.getElementById("mst").value="";
     document.getElementById("sdt").value="";
     document.getElementById("tencty").value="";
     document.getElementById("vanDe").value="";
+    document.getElementById("thongtin").innerHTML="";
+
 }
 
-/* ======================= */
 /* TABLE */
-/* ======================= */
 
-function renderTable(data = dsHoTro){
+function renderTable(data=dsHoTro){
 
-    let html = "";
+    let tbody =
+    document.getElementById("tableData");
+
+    tbody.innerHTML="";
 
     data.forEach((item,index)=>{
 
-        html += `
+        tbody.innerHTML += `
 
         <tr class="border-t border-slate-800">
 
-            <td class="p-4 font-bold text-yellow-400">
-                ${index+1}
-            </td>
+        <td class="p-4">${index+1}</td>
 
-            <td class="p-4 text-slate-300">
-                ${item.ngay}
-            </td>
+        <td class="p-4">${item.ngay}</td>
 
-            <td class="p-4 text-sky-400">
-                ${item.mst}
-            </td>
+        <td class="p-4 text-sky-400 font-bold">
+        ${item.mst}
+        </td>
 
-            <td class="p-4 text-slate-300">
-                ${item.sdt}
-            </td>
+        <td class="p-4">
+        ${item.sdt}
+        </td>
 
-            <td class="p-4 text-white font-semibold">
-                ${item.tencty}
-            </td>
+        <td class="p-4 font-semibold">
+        ${item.tencty}
+        </td>
 
-            <td class="p-4 text-pink-400">
-                ${item.loai}
-            </td>
+        <td class="p-4 text-pink-400">
+        ${item.loai}
+        </td>
 
-            <td class="p-4 text-emerald-400">
-                Dũng
-            </td>
+        <td class="p-4 text-yellow-400">
+        ${item.nguoiHoTro}
+        </td>
 
-            <td class="p-4 text-slate-300">
-                ${item.vanDe}
-            </td>
+        <td class="p-4">
+        ${item.vanDe}
+        </td>
+
+        <td class="p-4">
+
+        <button
+        onclick="xoaDuLieu(${index})"
+        class="
+        bg-red-500/20
+        hover:bg-red-500
+        text-red-400
+        hover:text-white
+        w-10
+        h-10
+        rounded-xl
+        transition">
+
+        <i class="fas fa-trash"></i>
+
+        </button>
+
+        </td>
 
         </tr>
 
@@ -589,13 +712,33 @@ function renderTable(data = dsHoTro){
 
     });
 
-    document.getElementById("tableData").innerHTML =
-    html;
 }
 
-/* ======================= */
+/* XÓA */
+
+function xoaDuLieu(index){
+
+    let check=
+    confirm("Bạn muốn xóa dữ liệu?");
+
+    if(!check) return;
+
+    dsHoTro.splice(index,1);
+
+    localStorage.setItem(
+    "dsHoTro",
+    JSON.stringify(dsHoTro)
+    );
+
+    renderTable();
+
+    capNhatThongKe();
+
+    thongBao("Đã xóa");
+
+}
+
 /* SEARCH */
-/* ======================= */
 
 function timKiem(){
 
@@ -607,90 +750,65 @@ function timKiem(){
     let loc =
     dsHoTro.filter(item =>
 
-        item.mst.toLowerCase().includes(value)
-        ||
-        item.tencty.toLowerCase().includes(value)
+    item.mst.toLowerCase().includes(value)
+    ||
+    item.tencty.toLowerCase().includes(value)
 
     );
 
     renderTable(loc);
+
 }
 
-/* ======================= */
 /* THỐNG KÊ */
-/* ======================= */
 
 function capNhatThongKe(){
 
-    let now = new Date();
-
-    let ngay =
-    now.getDate().toString().padStart(2,'0')
-    + "/"
-    + (now.getMonth()+1).toString().padStart(2,'0')
-    + "/"
-    + now.getFullYear();
-
-    let dataHomNay =
-    dsHoTro.filter(x => x.ngay == ngay);
-
-    document.getElementById("tongHomNay").innerText =
-    dataHomNay.length;
+    document.getElementById("tongHoTro").innerText =
+    dsHoTro.length;
 
     document.getElementById("tongHD").innerText =
-    dsHoTro.filter(x => x.loai.includes("HD")).length;
+    dsHoTro.filter(x =>
+    x.loai.includes("HD")).length;
 
     document.getElementById("tongCKS").innerText =
-    dsHoTro.filter(x => x.loai.includes("CKS")).length;
+    dsHoTro.filter(x =>
+    x.loai.includes("CKS")).length;
 
     document.getElementById("tongBHXH").innerText =
-    dsHoTro.filter(x => x.loai.includes("BHXH")).length;
+    dsHoTro.filter(x =>
+    x.loai.includes("BHXH")).length;
+
 }
 
-/* ======================= */
 /* EXPORT EXCEL */
-/* ======================= */
 
 function exportExcel(){
 
-    if(dsHoTro.length === 0){
+    if(dsHoTro.length===0){
 
         alert("Không có dữ liệu");
 
         return;
     }
 
-    let dataExport = dsHoTro.map(item => ({
+    let dataExport =
+    dsHoTro.map(item => ({
 
-        "Mã số thuế": item.mst || "",
-
-        "Số điện thoại": item.sdt || "",
-
-        "Tên doanh nghiệp": item.tencty || "",
-
-        "Loại": item.loai || "",
-
-        "Tên hỗ trợ": "Dũng",
-
-        "Vấn đề": item.vanDe || ""
+        "Mã số thuế":item.mst,
+        "Số điện thoại":item.sdt,
+        "Tên doanh nghiệp":item.tencty,
+        "Loại":item.loai,
+        "Tên hỗ trợ":item.nguoiHoTro,
+        "Vấn đề":item.vanDe
 
     }));
 
-    let wb = XLSX.utils.book_new();
+    let wb =
+    XLSX.utils.book_new();
 
     let ws =
     XLSX.utils.json_to_sheet(dataExport);
-
-    ws['!cols'] = [
-
-        { wch: 18 },
-        { wch: 18 },
-        { wch: 40 },
-        { wch: 20 },
-        { wch: 18 },
-        { wch: 50 }
-
-    ];
 
     XLSX.utils.book_append_sheet(
     wb,
@@ -705,23 +823,6 @@ function exportExcel(){
 
     thongBao("Xuất Excel thành công");
 
-}
-
-/* ======================= */
-/* THÔNG BÁO */
-/* ======================= */
-
-function thongBao(text){
-
-    document.getElementById("msg").innerText =
-    text;
-
-    setTimeout(()=>{
-
-        document.getElementById("msg").innerText =
-        "";
-
-    },2000);
 }
 
 </script>
