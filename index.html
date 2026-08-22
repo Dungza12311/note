@@ -382,6 +382,7 @@ tbody tr:hover{
                         <th class="p-4 text-left text-sky-400">Loại</th>
                         <th class="p-4 text-left text-sky-400">Tên hỗ trợ</th>
                         <th class="p-4 text-left text-sky-400">Vấn đề</th>
+                        <th class="p-4 text-center text-sky-400">Xóa</th>
 
                     </tr>
 
@@ -607,6 +608,15 @@ function renderTable(data = dsHoTro){
                 ${item.vanDe}
             </td>
 
+            <td class="p-4 text-center">
+                <button
+                    onclick="xoaMotDong(${dsHoTro.indexOf(item)})"
+                    title="Xóa dòng này"
+                    class="bg-red-500/15 hover:bg-red-500 text-red-400 hover:text-white w-9 h-9 rounded-xl transition">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+
         </tr>
 
         `;
@@ -616,7 +626,7 @@ function renderTable(data = dsHoTro){
     if(data.length === 0){
         html = `
         <tr>
-            <td colspan="8" class="p-8 text-center text-slate-500">
+            <td colspan="9" class="p-8 text-center text-slate-500">
                 Chưa có dữ liệu hỗ trợ
             </td>
         </tr>`;
@@ -625,6 +635,41 @@ function renderTable(data = dsHoTro){
     document.getElementById("tableData").innerHTML =
     html;
 }
+
+/* =======================
+   XÓA TỪNG DÒNG
+   ======================= */
+
+function xoaMotDong(index){
+
+    if(index < 0 || index >= dsHoTro.length){
+        return;
+    }
+
+    let item = dsHoTro[index];
+
+    let xacNhan = confirm(
+        "Bạn có chắc muốn xóa dữ liệu của MST: " +
+        (item.mst || "không có MST") + "?"
+    );
+
+    if(!xacNhan){
+        return;
+    }
+
+    dsHoTro.splice(index, 1);
+
+    localStorage.setItem(
+        "dsHoTro",
+        JSON.stringify(dsHoTro)
+    );
+
+    renderTable();
+    capNhatThongKe();
+
+    thongBao("Đã xóa 1 dòng dữ liệu");
+}
+
 
 /* ======================= */
 /* SEARCH */
