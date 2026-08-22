@@ -119,6 +119,16 @@ tbody tr:hover{
 
         </div>
 
+        <div class="flex items-center gap-2">
+        <button
+        onclick="xoaTatCaDuLieu()"
+        class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-xl font-bold text-sm">
+
+            <i class="fas fa-trash mr-2"></i>
+            Xóa dữ liệu
+
+        </button>
+
         <button
         onclick="exportExcel()"
         class="bg-emerald-500 hover:bg-emerald-600 px-5 py-2 rounded-xl font-bold text-sm">
@@ -127,6 +137,7 @@ tbody tr:hover{
             Xuất Excel
 
         </button>
+    </div>
 
     </div>
 
@@ -341,7 +352,7 @@ tbody tr:hover{
         <div class="p-5 border-b border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-3">
 
             <h2 class="text-xl font-bold">
-                Bảng dữ liệu hỗ trợ <span class="text-sky-400 text-sm">(bắt đầu từ 0)</span>
+                Bảng dữ liệu hỗ trợ
             </h2>
 
             <input
@@ -418,8 +429,21 @@ for(let i=0;i<70;i++){
 /* DATA */
 /* ======================= */
 
+/* =======================
+   RESET DỮ LIỆU LẦN ĐẦU
+   =======================
+   Khi cập nhật phiên bản mới, dữ liệu cũ sẽ được xóa 1 lần.
+   Sau đó dữ liệu mới vẫn được lưu bình thường.
+*/
+const DATA_VERSION = "v2";
+
+if (localStorage.getItem("dsHoTro_data_version") !== DATA_VERSION) {
+    localStorage.removeItem("dsHoTro");
+    localStorage.setItem("dsHoTro_data_version", DATA_VERSION);
+}
+
 let dsHoTro =
-JSON.parse(localStorage.getItem("dsHoTro_v2")) || [];
+JSON.parse(localStorage.getItem("dsHoTro")) || [];
 
 renderTable();
 
@@ -589,6 +613,15 @@ function renderTable(data = dsHoTro){
 
     });
 
+    if(data.length === 0){
+        html = `
+        <tr>
+            <td colspan="8" class="p-8 text-center text-slate-500">
+                Chưa có dữ liệu hỗ trợ
+            </td>
+        </tr>`;
+    }
+
     document.getElementById("tableData").innerHTML =
     html;
 }
@@ -646,6 +679,39 @@ function capNhatThongKe(){
     document.getElementById("tongBHXH").innerText =
     dsHoTro.filter(x => x.loai.includes("BHXH")).length;
 }
+
+/* =======================
+   XÓA TOÀN BỘ DỮ LIỆU
+   ======================= */
+
+function xoaTatCaDuLieu(){
+
+    if(dsHoTro.length === 0){
+        alert("Dữ liệu đã ở mức 0");
+        return;
+    }
+
+    let xacNhan = confirm(
+        "Bạn có chắc chắn muốn xóa toàn bộ dữ liệu hỗ trợ không?\\n\\nDữ liệu đã xóa sẽ không thể khôi phục."
+    );
+
+    if(!xacNhan){
+        return;
+    }
+
+    dsHoTro = [];
+
+    localStorage.setItem(
+        "dsHoTro",
+        JSON.stringify(dsHoTro)
+    );
+
+    renderTable();
+    capNhatThongKe();
+
+    thongBao("Đã xóa toàn bộ dữ liệu");
+}
+
 
 /* ======================= */
 /* EXPORT EXCEL */
